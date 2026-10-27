@@ -176,6 +176,29 @@
   footer{background:var(--bg2);padding:46px 22px 90px;text-align:center;color:var(--mut);font-size:.9rem;transition:background .6s}
   footer .logo-t{font-size:3rem}footer .r{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:12px 0;font-weight:800}footer a:hover{color:var(--rosa)}
   .wa{position:fixed;right:18px;bottom:18px;z-index:150;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.4);transition:.25s}.wa:hover{transform:scale(1.08) rotate(8deg)}.wa svg{width:30px;height:30px;fill:#fff}
+
+  /* ===== v1.1 · Y2K chrome luxe ===== */
+  :root{--chrome:linear-gradient(180deg,#ffffff 0%,#ffd1e6 30%,#ff7ab5 48%,#ff3d8b 52%,#ffc2dd 75%,#ffffff 100%);--holo:linear-gradient(100deg,#ff3d8b,#ffd23f 25%,#2fd6f5 50%,#c79bff 75%,#ff3d8b)}
+  .h2 .hl{background:var(--holo);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:holo 6s linear infinite;padding-right:.1em}
+  [data-modo=noche] .h2 .hl{filter:drop-shadow(0 0 14px rgba(255,61,139,.45))}
+  @keyframes holo{to{background-position:250% 0}}
+  .hero .logo-t{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 2px #ff3d8b) drop-shadow(0 0 18px rgba(255,61,139,.7)) drop-shadow(0 4px 0 #a3104d)}
+  [data-modo=dia] .hero .logo-t{filter:drop-shadow(0 3px 0 #fff) drop-shadow(0 8px 0 #e0186b)}
+  .destellos{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .destellos i{position:absolute;width:18px;height:18px;opacity:0;animation:brilla ease-in-out infinite}
+  .destellos i::before,.destellos i::after{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+  .destellos i:nth-child(3n)::before{background:var(--amarillo)}.destellos i:nth-child(3n+1)::before{background:var(--cian)}
+  .destellos i::after{transform:rotate(45deg) scale(.5)}
+  [data-modo=noche] .destellos i{filter:drop-shadow(0 0 6px #fff)}
+  @keyframes brilla{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1) rotate(90deg)}}
+  .hero .wrap{position:relative;z-index:1}
+  .btn-rosa{background:linear-gradient(120deg,#ff3d8b,#ff7ab5 40%,#e0186b 70%,#ff3d8b)!important;background-size:220% 100%!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -3px 0 rgba(0,0,0,.15),0 10px 30px rgba(255,61,139,.4)!important}.btn-rosa:hover{background-position:100% 0!important}
+  .grupo,.chips button,details,.reloj{border-radius:22px}
+  .grupo{background:linear-gradient(160deg,color-mix(in srgb,var(--panel) 92%,#fff),var(--panel))!important}
+  .torneo{border-style:solid!important;border-width:1px!important;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--holo) border-box!important;border-color:transparent!important}
+  .mesa{border-image:none;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 0 0 3px #c9973f,var(--sombra)!important}
+  .polaroid{box-shadow:var(--sombra),0 0 0 1px rgba(255,255,255,.4)}
+  .kicker{background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(6px)}
 </style>
 </head>
 <body>
@@ -191,7 +214,7 @@
   </div>
 </nav></header>
 
-<section class="hero" id="top"><div class="wrap">
+<section class="hero" id="top"><div class="destellos" id="destellos" aria-hidden="true"></div><div class="wrap">
   <div class="reveal">
     <span class="kicker">La Paz, Puebla · Bar de barrio</span>
     <h1 class="logo-t">la Bebesota</h1>
@@ -424,6 +447,9 @@ $('#foto').onclick=()=>{const f=$('#flash');f.classList.add('go');requestAnimati
 /* Enlaces de WhatsApp */
 $$('[data-wa]').forEach(a=>{a.href=wa(a.dataset.wa);a.target='_blank';a.rel='noopener';});
 $('#wa').href=wa('Holi Bebesota 💖 Tengo una pregunta');$('#wa').target='_blank';
+
+/* Destellos */
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const c=$('#destellos');for(let i=0;i<22;i++){const e=document.createElement('i');const z=10+Math.random()*16;e.style.width=e.style.height=z+'px';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.animationDuration=(2.4+Math.random()*3)+'s';e.style.animationDelay=(-Math.random()*5)+'s';c.appendChild(e);}})();
 
 /* Aparición */
 (function(){const els=$$('.reveal');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
